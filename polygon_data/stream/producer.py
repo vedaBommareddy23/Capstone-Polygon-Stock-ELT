@@ -20,6 +20,7 @@ def read_ccloud_config(config_file):
     conf = {}
     with open(config_file) as fh:
         for line in fh:
+            print(line)
             line = line.strip()
             if len(line) != 0 and line[0] != "#":
                 parameter, value = line.strip().split('=', 1)
@@ -70,10 +71,12 @@ if __name__=='__main__':
     # load environment variables
     load_dotenv()
     api_key=os.environ.get('api_key')
-    producer = Producer(read_ccloud_config("client.properties"))
+    data_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
+    client_properties_path = os.path.join(data_dir,"client.properties")
+    producer = Producer(read_ccloud_config(client_properties_path))
 
     logging.basicConfig(level=logging.DEBUG)
-    data_dir = os.path.abspath(os.path.join(os.getcwd(), ".."))
+    
     subscription_csv_path = os.path.join(data_dir, "data", "subscriptions.csv")
     #print(subscription_csv_path)
     
