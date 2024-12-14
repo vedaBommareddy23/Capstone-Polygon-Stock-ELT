@@ -95,3 +95,5 @@ if __name__=='__main__':
     # Run web socket client
     ws.run(handle_msg=handle_msg)
 
+    #test checks
+
