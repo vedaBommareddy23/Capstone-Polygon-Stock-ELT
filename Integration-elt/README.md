@@ -26,7 +26,7 @@ Initially, we planned to deploy Airbyte on an EC2 instance. Although Airbyte was
 **Kafka Outgoing Topic for Consumer**
 ![Image](/Docs/ConfluentCloud_Outgoing_Topic.jpg)
 **Clickhouse Merge Tree Table**
-![Image](/Docs/ConfluentCloud_Outgoing_Topic.jpg)
+![Image](/Docs/Clickhouse_Incoming_Table.jpg)
 
 
 # Screenshots for Batch Pipeline 
