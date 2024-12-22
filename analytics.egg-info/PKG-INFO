@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: analytics
+Version: 0.0.0
+Requires-Dist: dagster
+Requires-Dist: dagster-cloud
+Requires-Dist: dagster-dbt
+Requires-Dist: dbt-core==1.7.2
+Requires-Dist: dbt-snowflake==1.7.2
+Provides-Extra: dev
+Requires-Dist: dagster-webserver; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
