@@ -17,7 +17,7 @@ if not dbt_project_dir.exists():
 
 # Configure dbt CLI resource
 dbt_warehouse_resource = DbtCliResource(
-    project_dir=str(dbt_project_dir=os.fspath(dbt_project_dir)),
+    project_dir=str(os.fspath(dbt_project_dir)),
     profiles_dir=str(dbt_project_dir)
 )
 
