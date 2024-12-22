@@ -17,13 +17,23 @@ if not dbt_project_dir.exists():
 
 # Configure dbt CLI resource
 dbt_warehouse_resource = DbtCliResource(
-    project_dir=str(dbt_project_dir),
+    project_dir=str(dbt_project_dir=os.fspath(dbt_project_dir)),
     profiles_dir=str(dbt_project_dir)
 )
 
 # Define manifest path
-dbt_manifest_path = dbt_project_dir / "target" / "manifest.json"
+dbt_manifest_path = 'Transformation/polygon_dbt/target/manifest.json'
 logger.info(f"DBT Manifest Path: {dbt_manifest_path}")
+
+dbt_manifest_path_1 = (
+        dbt_warehouse_resource.cli(
+            ["--quiet", "parse", "--target", "prod"],
+            target_path=Path("target"),
+        )
+        .wait()
+        .target_path.joinpath("manifest.json")
+)
+logger.info(f"DBT Manifest Path*****: {dbt_manifest_path_1}")
 
 @dbt_assets(manifest=str(dbt_manifest_path))
 def dbt_warehouse(context: AssetExecutionContext, dbt_warehouse_resource: DbtCliResource):
