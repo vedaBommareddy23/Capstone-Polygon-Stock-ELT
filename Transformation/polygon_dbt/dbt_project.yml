@@ -31,6 +31,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
 models:
+  +meta:
+    dagster:
+      group: dbt_warehouse
+      auto_materialize_policy:
+        type: eager
   polygon:
     # Config indicated by + and applies to all files under models/example/
     staging:
@@ -39,3 +44,12 @@ models:
     marts:
       +materialized: table
       +schema: marts
+      +meta:
+        dagster:
+          group: dbt_warehouse
+          auto_materialize_policy:
+            type: eager
+          freshness_policy:
+            maximum_lag_minutes: 5
+            cron_schedule: "*/5 * * * *"
+

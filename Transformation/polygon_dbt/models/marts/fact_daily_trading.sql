@@ -9,7 +9,7 @@ with daily_open_close as(
         volume as volume,
         premarket as premarket,
         afterhours as afterhours
-    from {{ source('polygon','daily_open_close')}}
+    from {{ ref('daily_open_close')}}
 ),
 grouped_daily_ticker as(
     select
@@ -17,7 +17,7 @@ grouped_daily_ticker as(
         date,
         N,
         VW
-    from {{source('polygon','grouped_daily')}}
+    from {{ref('grouped_daily')}}
 )
 select
     {{dbt_utils.generate_surrogate_key(['open_close.name'])}} as ticker_daily_key,
